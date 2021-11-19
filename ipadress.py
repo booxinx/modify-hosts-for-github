@@ -1,5 +1,7 @@
 import pip._vendor.requests
 import parsel
+import os
+import stat
 dict_ip_name={}
 ip_name=[]
 name_list=[]
@@ -20,6 +22,7 @@ for i in range(0,2):
     for h1 in parsel_name:
         name = h1.xpath('text()').extract_first().lower()
     dict_ip_name.update({ipadress:name})
+os.chmod('C:/Windows/System32/drivers/etc/hosts',stat.S_IWRITE)
 hostsfile = open('C:/Windows/System32/drivers/etc/hosts','r').readlines()
 for name_in_dict in dict_ip_name.values():
     name_list.append(name_in_dict.lower())
